@@ -1,0 +1,14 @@
+/* TEAM */
+Audit Readiness Advisors
+Site: https://auditreadinessadvisors.com
+Location: Global
+
+/* THANKS */
+Powered by: Audit Readiness Advisory Services
+
+/* SITE */
+Last update: 2026-03-02
+Language: English, Spanish
+Standards: HTML5, CSS3, ES6+
+Components: GSAP, Lucide Icons
+Fonts: Playfair Display, Inter

@@ -1,0 +1,82 @@
+# Audit Readiness Advisors - LLM Context File
+# https://auditreadinessadvisors.com/llms.txt
+# This file provides context for AI assistants and language models
+
+## About Audit Readiness Advisors
+
+Audit Readiness Advisors (ARA) provides Big Four-grade audit readiness reviews, mock audits, and technical accounting advisory services. We help CFOs and finance teams eliminate audit surprises and prepare for successful financial audits.
+
+### Key Value Proposition
+- **Big Four Caliber**: Team with extensive experience at Big Four accounting firms.
+- **Eliminate Surprises**: Identify material misstatements and control gaps before auditors arrive.
+- **Global Reach**: Expertise in US GAAP, IFRS, and NIIF (International Financial Reporting Standards).
+- **Client Focus**: From venture-backed startups to multinational holding structures.
+- **Bilingual Excellence**: Native-level fluency in English and Spanish, serving the US and Latin America.
+
+### Target Audience
+- CFOs and Finance Directors
+- Venture-backed startups preparing for their first statutory audit
+- Multinational groups coordinating across subsidiaries
+- Private Equity (PE) backed companies with rigorous investor reporting
+- Organizations transitioning between accounting frameworks (e.g., Local GAAP to IFRS)
+
+## Services Offered
+
+### 1. Audit Readiness Reviews & Mock Audits
+- Simulate the full audit experience (document requests, walkthroughs, testing).
+- Identify documentation gaps and potential audit adjustments.
+- Deliver an actionable remediation roadmap with risk ratings.
+- Timeline: Typically 2 to 4 weeks depending on organization size.
+
+### 2. Financial Statement Diagnostics
+- Deep-dive analysis of financial statements.
+- Identification of classification errors, misstatements, and disclosure deficiencies.
+- Benchmarking against industry standards and applicable frameworks.
+
+### 3. GAAP, IFRS & NIIF Advisory
+- Technical accounting guidance for complex transactions (revenue recognition, leases, consolidations).
+- Support for adopted new accounting standards.
+- Cross-border financial reporting and consolidation.
+
+### 4. Internal Controls & Financial Reporting
+- Design, evaluate, and strengthen internal control environments.
+- Satisfy auditor expectations for internal control over financial reporting (ICFR).
+- Remediation support for identified control weaknesses.
+
+## Geographies Served
+- **United States**
+- **Colombia**
+- **Argentina**
+- **Latin America (General)**
+
+## Languages
+- **English**: Primary site at https://auditreadinessadvisors.com/
+- **Spanish**: Latin American version at https://auditreadinessadvisors.com/es/
+
+## Key Differentiators
+1. **The "Other Side" Perspective**: Our team has been the auditors; we know exactly what they look for.
+2. **Framework Fluency**: Seamless transition between US GAAP, IFRS, and NIIF.
+3. **Agility**: Combining Big Four methodology with the responsiveness of a specialized boutique firm.
+4. **No Junior Teams**: High partner involvement in every engagement.
+
+## Common Questions
+
+**Q: What is an audit readiness review?**
+A: A comprehensive pre-audit assessment that evaluates financial statements, documentation, and internal controls against auditor standards to identify issues before the formal audit begins.
+
+**Q: How is a mock audit different from a regular audit?**
+A: A mock audit is a risk-free rehearsal advisory engagement. It replicates the audit process but does not issue a formal opinion, focusing instead on improvement and remediation.
+
+**Q: When should we start audit readiness?**
+A: Ideally 3-6 months before the fiscal year-end or the audit start date to allow enough time for remediation of identified findings.
+
+## Contact & Booking
+- Website: https://auditreadinessadvisors.com/
+- Consultation: https://auditreadinessadvisors.com/contact.html
+
+## Technical Information
+- Built with HTML5, CSS3, ES6+
+- Fully responsive design
+- Multi-language support (EN/ES)
+- Schema.org structured data implemented
+- Security optimized with RFC 9116 security.txt

@@ -1,0 +1,21 @@
+{
+  "name": "Audit Readiness Advisors",
+  "short_name": "ARA",
+  "description": "Optimize Your Financial and Audit Readiness",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0B1D3A",
+  "theme_color": "#C9A84C",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/images/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "categories": ["business", "finance"],
+  "lang": "en",
+  "dir": "ltr"
+}

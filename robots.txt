@@ -1,3 +1,232 @@
+# robots.txt for Audit Readiness Advisors
+# https://auditreadinessadvisors.com
+# 
+# PHILOSOPHY: Maximize discoverability through AI search and LLM-powered tools
+# while protecting content from being used in AI training datasets.
+#
+# Last updated: January 2026
+
+# =============================================================================
+# DEFAULT RULES FOR ALL CRAWLERS
+# =============================================================================
+
 User-agent: *
 Allow: /
+Allow: /es/
+Crawl-delay: 1
+
+# Block non-content paths
+Disallow: /api/
+Disallow: /admin/
+Disallow: /node_modules/
+Disallow: /private/
+Disallow: /_next/
+Disallow: /cdn-cgi/
+
+# =============================================================================
+# SEARCH ENGINES - FULL ACCESS
+# =============================================================================
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: Yandex
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: Qwantify
+Allow: /
+
+# =============================================================================
+# SOCIAL MEDIA CRAWLERS - FULL ACCESS
+# These generate link previews and help content spread
+# =============================================================================
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: Pinterest
+Allow: /
+
+User-agent: Slackbot
+Allow: /
+
+User-agent: Discordbot
+Allow: /
+
+User-agent: WhatsApp
+Allow: /
+
+User-agent: TelegramBot
+Allow: /
+
+# =============================================================================
+# AI SEARCH AND DISCOVERY CRAWLERS - FULL ACCESS
+# These power AI-assisted search, answer questions about you, and send users
+# =============================================================================
+
+# OpenAI - Powers ChatGPT search and browsing features
+User-agent: ChatGPT-User
+Allow: /
+
+# Anthropic - Powers Claude's web search and retrieval
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Anthropic-AI
+Allow: /
+
+# Perplexity - AI search engine that cites sources and sends traffic
+User-agent: PerplexityBot
+Allow: /
+
+# You.com - AI search engine
+User-agent: YouBot
+Allow: /
+
+# Microsoft Copilot browsing
+User-agent: CopilotBot
+Allow: /
+
+# Brave Search AI features
+User-agent: BraveBot
+Allow: /
+
+# Neeva (now part of Snowflake, but bot may still exist)
+User-agent: NeevaBot
+Allow: /
+
+# Kagi search
+User-agent: KagiBot
+Allow: /
+
+# Phind - Developer-focused AI search
+User-agent: PhindBot
+Allow: /
+
+# =============================================================================
+# AI TRAINING CRAWLERS - BLOCKED
+# These collect content for model training, not for serving users
+# =============================================================================
+
+# OpenAI training crawler (different from ChatGPT-User which is for search)
+User-agent: GPTBot
+Disallow: /
+
+# Google AI training (separate from regular Googlebot)
+User-agent: Google-Extended
+Disallow: /
+
+# Anthropic training crawler (different from Claude-Web which is for search)
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+# Meta/Facebook AI training
+User-agent: FacebookBot
+Disallow: /
+
+User-agent: meta-externalagent
+Disallow: /
+
+# Amazon AI training
+User-agent: Amazonbot
+Disallow: /
+
+# Apple AI training
+User-agent: Applebot-Extended
+Disallow: /
+
+# Common Crawl - Major source for AI training datasets
+User-agent: CCBot
+Disallow: /
+
+# ByteDance/TikTok AI training
+User-agent: Bytespider
+Disallow: /
+
+# Cohere AI training
+User-agent: cohere-ai
+Disallow: /
+
+# Diffbot - Web scraping for AI datasets
+User-agent: Diffbot
+Disallow: /
+
+# Omgili - Content aggregation for datasets
+User-agent: omgili
+Disallow: /
+
+User-agent: omgilibot
+Disallow: /
+
+# PetalBot - Yandex AI features
+User-agent: PetalBot
+Disallow: /
+
+# Seekr AI
+User-agent: Seekr
+Disallow: /
+
+# Timpi decentralized search/AI
+User-agent: Timpibot
+Disallow: /
+
+# AI21 Labs
+User-agent: AI21Bot
+Disallow: /
+
+# Hugging Face dataset collection
+User-agent: HuggingFaceBot
+Disallow: /
+
+# Sentibot - Sentiment analysis training
+User-agent: Sentibot
+Disallow: /
+
+# Generic scrapers commonly used for training data
+User-agent: Scrapy
+Disallow: /
+
+User-agent: img2dataset
+Disallow: /
+
+User-agent: ImagesiftBot
+Disallow: /
+
+User-agent: DataForSeoBot
+Disallow: /
+
+User-agent: webz.io
+Disallow: /
+
+User-agent: Kangaroo Bot
+Disallow: /
+
+User-agent: ICC-Crawler
+Disallow: /
+
+# =============================================================================
+# SITEMAP
+# =============================================================================
+
 Sitemap: https://auditreadinessadvisors.com/sitemap.xml

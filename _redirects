@@ -1,0 +1,24 @@
+# Redirects for Audit Readiness Advisors
+# Compatible with Netlify, Cloudflare Pages
+
+# Force HTTPS (if not automatically handled)
+http://auditreadinessadvisors.com/* https://auditreadinessadvisors.com/:splat 301!
+http://www.auditreadinessadvisors.com/* https://auditreadinessadvisors.com/:splat 301!
+https://www.auditreadinessadvisors.com/* https://auditreadinessadvisors.com/:splat 301!
+
+# Spanish version routing
+/es /es/index.html 200
+/es/ /es/index.html 200
+
+# Security.txt standard location (Redirect root to .well-known if preferred, or vice-versa)
+/security.txt /.well-known/security.txt 200
+
+# Clean URLs (optional - remove .html)
+/index /index.html 200
+/services/audit-readiness /services/audit-readiness.html 200
+/services/financial-diagnostics /services/financial-diagnostics.html 200
+/services/gaap-ifrs-advisory /services/gaap-ifrs-advisory.html 200
+/services/internal-controls /services/internal-controls.html 200
+/about /about.html 200
+/faq /faq.html 200
+/contact /contact.html 200
