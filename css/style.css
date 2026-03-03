@@ -1,6 +1,25 @@
 /* ============================================
-   FINANCIAL AUDIT READINESS ADVISORS — Design System
+   AUDIT READINESS ADVISORS — Design System
    ============================================ */
+
+/* Fallback font metrics to prevent Layout Shift (CLS) */
+@font-face {
+  font-family: 'Playfair Display Fallback';
+  src: local('Georgia');
+  size-adjust: 97%;
+  ascent-override: 90%;
+  descent-override: 25%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: 'Inter Fallback';
+  src: local('-apple-system'), local('BlinkMacSystemFont'), local('Arial');
+  size-adjust: 100%;
+  ascent-override: 90%;
+  descent-override: 22%;
+  line-gap-override: 0%;
+}
 
 /* --- CSS Custom Properties --- */
 :root {
@@ -25,8 +44,8 @@
   --text-muted: #8A92A3;
 
   /* Typography */
-  --font-heading: 'Playfair Display', Georgia, serif;
-  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-heading: 'Playfair Display', 'Playfair Display Fallback', Georgia, serif;
+  --font-body: 'Inter', 'Inter Fallback', -apple-system, BlinkMacSystemFont, sans-serif;
 
   /* Spacing */
   --space-xs: 0.25rem;
@@ -355,6 +374,9 @@ p {
   padding: var(--space-sm) var(--space-lg);
   border-radius: var(--radius-sm);
   transition: all var(--transition-fast);
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
 }
 
 .nav__cta:hover {
@@ -372,6 +394,10 @@ p {
   background: none;
   border: none;
   padding: var(--space-sm);
+  min-width: 44px;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
 }
 
 .nav__toggle span {
@@ -742,7 +768,8 @@ p {
 .trust-bar__label {
   font-size: 0.9rem;
   font-weight: 500;
-  color: var(--text-secondary);
+  color: var(--gray-100);
+  /* Light on navy background */
 }
 
 /* --- Process Steps --- */
