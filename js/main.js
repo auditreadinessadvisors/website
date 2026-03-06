@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initFAQAccordion();
     initSmoothScroll();
     initNavScroll();
+    initLanguageToggle();
 });
 
 /* --- Mobile Navigation --- */
@@ -16,18 +17,27 @@ function initMobileNav() {
     const links = document.querySelector('.nav__links');
     if (!toggle || !links) return;
 
+    function resetToggle() {
+        const spans = toggle.querySelectorAll('span');
+        spans[0].style.transform = '';
+        spans[1].style.opacity = '';
+        spans[2].style.transform = '';
+    }
+
     toggle.addEventListener('click', () => {
         links.classList.toggle('open');
         toggle.classList.toggle('active');
-        const spans = toggle.querySelectorAll('span');
-        if (links.classList.contains('open')) {
+        const isOpen = links.classList.contains('open');
+
+        toggle.setAttribute('aria-expanded', isOpen);
+
+        if (isOpen) {
+            const spans = toggle.querySelectorAll('span');
             spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
             spans[1].style.opacity = '0';
             spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
         } else {
-            spans[0].style.transform = '';
-            spans[1].style.opacity = '';
-            spans[2].style.transform = '';
+            resetToggle();
         }
     });
 
@@ -36,10 +46,8 @@ function initMobileNav() {
         link.addEventListener('click', () => {
             links.classList.remove('open');
             toggle.classList.remove('active');
-            const spans = toggle.querySelectorAll('span');
-            spans[0].style.transform = '';
-            spans[1].style.opacity = '';
-            spans[2].style.transform = '';
+            toggle.setAttribute('aria-expanded', 'false');
+            resetToggle();
         });
     });
 }
@@ -77,11 +85,16 @@ function initFAQAccordion() {
             const isActive = item.classList.contains('active');
 
             // Close all items
-            items.forEach(i => i.classList.remove('active'));
+            items.forEach(i => {
+                i.classList.remove('active');
+                const btn = i.querySelector('.faq__question');
+                if (btn) btn.setAttribute('aria-expanded', 'false');
+            });
 
             // Open clicked item if it wasn't already open
             if (!isActive) {
                 item.classList.add('active');
+                question.setAttribute('aria-expanded', 'true');
             }
         });
     });
@@ -102,44 +115,65 @@ function initSmoothScroll() {
     });
 }
 
-/* --- Nav background on scroll --- */
+/* --- Nav background on scroll (throttled with rAF) --- */
 function initNavScroll() {
     const nav = document.querySelector('.nav');
     if (!nav) return;
 
+    let ticking = false;
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            nav.style.background = 'rgba(7, 15, 30, 0.98)';
-        } else {
-            nav.style.background = 'rgba(11, 29, 58, 0.95)';
+        if (!ticking) {
+            requestAnimationFrame(() => {
+                if (window.scrollY > 50) {
+                    nav.style.background = 'rgba(7, 15, 30, 0.98)';
+                } else {
+                    nav.style.background = 'rgba(11, 29, 58, 0.95)';
+                }
+                ticking = false;
+            });
+            ticking = true;
         }
     });
 }
 
-/* --- Language Toggle --- */
+/* --- Language Toggle (event-listener based, no inline onclick) --- */
+
+// Bidirectional path map — one source of truth
+const PATH_MAP = {
+    '/about.html': '/es/nosotros.html',
+    '/contact.html': '/es/contacto.html',
+    '/faq.html': '/es/preguntas-frecuentes.html',
+    '/assessment.html': '/es/evaluacion.html',
+    '/services/audit-readiness.html': '/es/servicios/preparacion-auditoria.html',
+    '/services/financial-diagnostics.html': '/es/servicios/diagnostico-financiero.html',
+    '/services/gaap-ifrs-advisory.html': '/es/servicios/asesoria-gaap-ifrs-niif.html',
+    '/services/internal-controls.html': '/es/servicios/controles-internos.html'
+};
+
+// Build reverse map (ES → EN)
+const PATH_MAP_REVERSE = Object.fromEntries(
+    Object.entries(PATH_MAP).map(([en, es]) => [es, en])
+);
+
+function initLanguageToggle() {
+    document.querySelectorAll('.nav__lang').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const targetLang = btn.dataset.lang || btn.textContent.trim().toLowerCase();
+            switchLanguage(targetLang);
+        });
+    });
+}
+
 function switchLanguage(targetLang) {
     const currentPath = window.location.pathname;
     let newPath;
 
     if (targetLang === 'es') {
-        // Switch to Spanish
-        if (currentPath.includes('/es/')) return; // Already on Spanish
+        if (currentPath.includes('/es/')) return;
         if (currentPath.endsWith('/') || currentPath.endsWith('/index.html')) {
             newPath = currentPath.replace(/\/?(?:index\.html)?$/, '') + '/es/index.html';
         } else {
-            // Map English paths to Spanish paths
-            const pathMap = {
-                '/about.html': '/es/nosotros.html',
-                '/contact.html': '/es/contacto.html',
-                '/faq.html': '/es/preguntas-frecuentes.html',
-                '/assessment.html': '/es/evaluacion.html',
-                '/services/audit-readiness.html': '/es/servicios/preparacion-auditoria.html',
-                '/services/financial-diagnostics.html': '/es/servicios/diagnostico-financiero.html',
-                '/services/gaap-ifrs-advisory.html': '/es/servicios/asesoria-gaap-ifrs-niif.html',
-                '/services/internal-controls.html': '/es/servicios/controles-internos.html'
-            };
-            // Find matching path
-            for (const [en, es] of Object.entries(pathMap)) {
+            for (const [en, es] of Object.entries(PATH_MAP)) {
                 if (currentPath.endsWith(en)) {
                     newPath = currentPath.replace(en, es);
                     break;
@@ -148,22 +182,11 @@ function switchLanguage(targetLang) {
             if (!newPath) newPath = currentPath.replace(/\/([^/]+)$/, '/es/$1');
         }
     } else {
-        // Switch to English
-        if (!currentPath.includes('/es/')) return; // Already on English
+        if (!currentPath.includes('/es/')) return;
         if (currentPath.endsWith('/es/') || currentPath.endsWith('/es/index.html')) {
             newPath = currentPath.replace(/\/es\/?(?:index\.html)?$/, '/index.html');
         } else {
-            const pathMap = {
-                '/es/nosotros.html': '/about.html',
-                '/es/contacto.html': '/contact.html',
-                '/es/preguntas-frecuentes.html': '/faq.html',
-                '/es/evaluacion.html': '/assessment.html',
-                '/es/servicios/preparacion-auditoria.html': '/services/audit-readiness.html',
-                '/es/servicios/diagnostico-financiero.html': '/services/financial-diagnostics.html',
-                '/es/servicios/asesoria-gaap-ifrs-niif.html': '/services/gaap-ifrs-advisory.html',
-                '/es/servicios/controles-internos.html': '/services/internal-controls.html'
-            };
-            for (const [es, en] of Object.entries(pathMap)) {
+            for (const [es, en] of Object.entries(PATH_MAP_REVERSE)) {
                 if (currentPath.endsWith(es)) {
                     newPath = currentPath.replace(es, en);
                     break;
